@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Earning Space - Coming Soon</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(270deg, #ff8c00, #ff0080, #ffff00, #00ff00, #0000ff);
+            background-size: 1000% 1000%;
+            animation: gradientAnimation 20s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ff0080;
+        }
+
+        p {
+            color: #333;
+        }
+
+        input[type="email"] {
+            padding: 10px;
+            margin: 20px 0;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff0080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff0055;
+        }
+
+        #response {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff0055;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>We're Coming Soon!</h1>
+        <p>Get ready for our freelance micro-tasking platform. Stay updated with the latest news and updates by subscribing below.</p>
+        <form id="subscribeForm" action="/subscribe" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
+        </form>
+        <div id="response"></div>
+    </div>
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            fetch('/subscribe', {
+                method: 'POST',
+                body: new URLSearchParams(formData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('response').textContent = data;
+                form.reset();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
